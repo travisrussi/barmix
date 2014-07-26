@@ -6,5 +6,5 @@ barMixControllers
 
         $timeout(function() {
             $state.go('setupIntro');
-        }, 1000);
+        }, 5000);
   });

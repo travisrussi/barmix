@@ -18,6 +18,6 @@ var barmixApp = angular.module('Barmix', ['ionic', 'Barmix.controllers'])
                 controller: 'TestCtrl'
             });
 
-        $urlRouterProvider.otherwise('/splash');
+        $urlRouterProvider.otherwise('/setupIntro');
 
     });
