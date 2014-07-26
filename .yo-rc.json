@@ -1,18 +1,18 @@
 {
   "generator-ng-component": {
-    "routeDirectory": "app/scripts/routes/",
-    "directiveDirectory": "app/scripts/directives/",
-    "filterDirectory": "app/scripts/filters/",
-    "serviceDirectory": "app/scripts/services/",
+    "routeDirectory": "app/scripts/",
+    "directiveDirectory": "app/scripts/",
+    "filterDirectory": "app/scripts/",
+    "serviceDirectory": "app/scripts/",
     "basePath": "app",
     "filters": [
-      "uirouter",
-      "ionic"
+      "uirouter"
     ],
     "extensions": [
       "js",
       "html",
-      "less"
-    ]
+      "scss"
+    ],
+    "controllerDirectory": "app/scripts/"
   }
 }

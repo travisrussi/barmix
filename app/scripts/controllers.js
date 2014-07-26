@@ -1,5 +1,5 @@
 'use strict';
-angular.module('Barmix.controllers', [])
+var barMixControllers = angular.module('Barmix.controllers', [])
 
 .controller('IntroCtrl', function($scope, $state, $ionicSlideBoxDelegate) {
  
