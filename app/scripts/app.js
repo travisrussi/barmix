@@ -7,11 +7,6 @@ var barmixApp = angular.module('Barmix', ['ionic', 'Barmix.controllers'])
     .config(function ($stateProvider, $urlRouterProvider) {
 
         $stateProvider
-            .state('intro', {
-                url: '/',
-                templateUrl: 'templates/intro.html',
-                controller: 'IntroCtrl'
-            })
             .state('main', {
                 url: '/main',
                 templateUrl: 'templates/main.html',
@@ -23,6 +18,6 @@ var barmixApp = angular.module('Barmix', ['ionic', 'Barmix.controllers'])
                 controller: 'TestCtrl'
             });
 
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/splash');
 
     });
