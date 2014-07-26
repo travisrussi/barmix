@@ -25,11 +25,11 @@
             <a class="button button-calm" ng-click="clickDecline()">No, Thanks</a>
         </div>
 
-        <div class="item item-text-wrap" ng-show="expiresIn > 0">
+        <div class="item item-text-wrap" ng-show="expiresIn > 0 && showTimer == true">
             <p>Act fast! Offer expires in {{expiresIn}} seconds.</p>
         </div>
 
-        <div class="item item-text-wrap" ng-show="expiresIn <= 0">
+        <div class="item item-text-wrap" ng-show="expiresIn <= 0 && showTimer == true">
             <p>Sorry, the offer expired!</p>
         </div>
 
@@ -46,6 +46,20 @@
 
         <button class="button button-full button-positive" ng-click="clickClose()">
             Get Back to Partying!
+        </button>
+    </div>
+
+    <div class="card" ng-show="showMeetLocation">
+        <div class="item item-divider">
+            Send Meet Location
+        </div>
+        
+        <label class="item item-input">
+            <input type="text" placeholder="Location">
+        </label>
+
+        <button class="button button-full button-positive" ng-click="clickSendLocation()">
+            Send
         </button>
     </div>
 

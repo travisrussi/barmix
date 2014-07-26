@@ -5,12 +5,21 @@ barMixControllers
 
         $scope.clickAccept = function() {
 
+            $interval.cancel(intervalPromise);
+            $scope.showTimer = false;
+            $scope.showMeetLocation = true;
+
         };
 
         $scope.clickDecline = function() {
 
         };
 
+        $scope.clickSendLocation = function() {
+
+        };
+
+        $scope.showTimer = true;
         $scope.expiresIn = 30;
 
         var intervalPromise = $interval(function () {
@@ -20,5 +29,6 @@ barMixControllers
             }
         }, 1000);
 
+        $scope.showMeetLocation = false;
 
   });
