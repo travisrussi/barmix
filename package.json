@@ -1,6 +1,11 @@
 {
   "name": "Barmix",
-  "version": "0.0.0",
+  "description": "Overcome social anxiety of meeting people at bars.",
+    "version": "0.0.1",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:travisrussi/barmix.git"
+    },
   "dependencies": {
       "connect": "2.15.0",
       "connect-phonegap": "0.9.1"
