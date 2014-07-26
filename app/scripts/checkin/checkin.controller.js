@@ -8,4 +8,8 @@ barMixControllers
             $state.go('meetList');
         };
 
+        $scope.clickBack = function () {
+          $state.go('venues');
+        };
+
   });
