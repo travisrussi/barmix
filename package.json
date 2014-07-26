@@ -1,7 +1,10 @@
 {
   "name": "Barmix",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+      "connect": "2.15.0",
+      "connect-phonegap": "0.9.1"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-autoprefixer": "~0.4.0",
@@ -34,9 +37,11 @@
     "ripple-emulator": "~0.9.23"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=0.10.0",
+    "npm": ">=1.1.0"
   },
   "scripts": {
-    "test": "grunt test"
+      "start": "node ./lib/index.js",
+      "test": "grunt test"
   }
 }
