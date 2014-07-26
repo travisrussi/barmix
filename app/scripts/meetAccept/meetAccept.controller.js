@@ -1,7 +1,7 @@
 'use strict';
 
 barMixControllers
-  .controller('MeetacceptCtrl', function ($scope, $interval) {
+  .controller('MeetacceptCtrl', function ($scope, $state, $interval) {
 
         $scope.clickAccept = function() {
 
@@ -12,11 +12,11 @@ barMixControllers
         };
 
         $scope.clickDecline = function() {
-
+            $state.go('meetList');
         };
 
         $scope.clickSendLocation = function() {
-
+            $state.go('meetRate');
         };
 
         $scope.showTimer = true;

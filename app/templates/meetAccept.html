@@ -21,16 +21,13 @@
         </div>
 
         <div class="button-bar">
-            <a class="button button-positive" ng-click="clickAccept()" ng-disabled="expiresIn <= 0">Yes, Let's Meet</a>
+            <a class="button button-positive" ng-click="clickAccept()" ng-disabled="expiresIn <= 0 || showMeetLocation">Yes, Let's Meet</a>
             <a class="button button-calm" ng-click="clickDecline()">No, Thanks</a>
         </div>
 
-        <div class="item item-text-wrap" ng-show="expiresIn > 0 && showTimer == true">
-            <p>Act fast! Offer expires in {{expiresIn}} seconds.</p>
-        </div>
-
-        <div class="item item-text-wrap" ng-show="expiresIn <= 0 && showTimer == true">
-            <p>Sorry, the offer expired!</p>
+        <div class="item item-text-wrap">
+            <p ng-show="expiresIn > 0 && showTimer == true">Act fast! Offer expires in {{expiresIn}} seconds.</p>
+            <p ng-show="expiresIn <= 0 && showTimer == true">Sorry, the offer expired!</p>
         </div>
 
     </div>
@@ -55,10 +52,10 @@
         </div>
         
         <label class="item item-input">
-            <input type="text" placeholder="Location">
+            <input type="text" placeholder="Location" ng-model="meetLocation">
         </label>
 
-        <button class="button button-full button-positive" ng-click="clickSendLocation()">
+        <button class="button button-full button-positive" ng-click="clickSendLocation()" ng-disabled="!meetLocation">
             Send
         </button>
     </div>

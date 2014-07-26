@@ -2,7 +2,7 @@
     <div class="buttons">
         <!--<button class="button" ng-click="doSomething()">Left Button</button>-->
     </div>
-    <h1 class="title">Rate</h1>
+    <h1 class="title">Rate your Match</h1>
     <div class="buttons">
         <!--<button class="button">Right Button</button>-->
     </div>
@@ -10,31 +10,37 @@
 <ion-content>
 
     <div class="card" ng-show="person">
-        <div class="item item-image">
+        <div class="item item-thumbnail-left">
             <img ng-src="{{person.image}}" />
+            <h2>{{person.artist}}</h2>
+            <p>and you met!</p>
         </div>
 
-        <div class="item">
-            <h2>Bob</h2>
-            <span class="item-note">
-              is in his 20's
-            </span>
+        <div class="item item-text-wrap">
+            <p>How would you rate {{person.artist}}?</p>
         </div>
 
-        <div class="item item-icon-left">
-            <i class="icon ion-plus"></i>
-            75% Positive Feedback
+        <ion-toggle ng-model="rating.curteous"
+                    ng-checked="rating.curteous">
+            Curteous?
+        </ion-toggle>
+
+        <ion-toggle ng-model="rating.polite"
+                    ng-checked="rating.polite">
+            Polite?
+        </ion-toggle>
+
+        <ion-toggle ng-model="rating.inappropriate"
+                    ng-checked="rating.inappropriate">
+            Inappropriate?
+        </ion-toggle>
+
+        <div class="item item-text-wrap" ng-show="rating.inappropriate">
+            <p>Warning: this will flag {{person.artist}} for a manual review and possible exclusion from BarMix.</p>
         </div>
 
-        <div class="item item-icon-left">
-            <i class="icon ion-plus"></i>
-            4 Drinks Bought tonight
-        </div>
+        <a class="button button-full button-positive" ng-click="clickRate()">Submit your rating</a>
 
-        <div class="button-bar">
-            <a class="button button-positive" ng-click="clickMeet()">Let's Meet</a>
-            <a class="button button-calm" ng-click="clickPass()">No, Thanks</a>
-        </div>
     </div>
 
     <div class="card" ng-show="noPersons">
@@ -48,6 +54,20 @@
 
         <button class="button button-full button-positive" ng-click="clickClose()">
             Get Back to Partying!
+        </button>
+    </div>
+
+    <div class="card" ng-show="showMeetLocation">
+        <div class="item item-divider">
+            Send Meet Location
+        </div>
+
+        <label class="item item-input">
+            <input type="text" placeholder="Location" ng-model="meetLocation">
+        </label>
+
+        <button class="button button-full button-positive" ng-click="clickSendLocation()" ng-disabled="!meetLocation">
+            Send
         </button>
     </div>
 
