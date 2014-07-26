@@ -5,6 +5,6 @@ barMixControllers
     $scope.message = 'Splash';
 
         $timeout(function() {
-            $state.go('main');
-        }, 3000);
+            $state.go('setupIntro');
+        }, 1000);
   });

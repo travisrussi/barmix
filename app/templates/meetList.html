@@ -1,3 +1,54 @@
-<div class="col-md-12">
-This is the meetList view.
-</div>
+<ion-header-bar align-title="center" class="bar-positive">
+    <div class="buttons">
+        <!--<button class="button" ng-click="doSomething()">Left Button</button>-->
+    </div>
+    <h1 class="title">Want to Meet?</h1>
+    <div class="buttons">
+        <!--<button class="button">Right Button</button>-->
+    </div>
+</ion-header-bar>
+<ion-content>
+
+    <div class="card" ng-show="person">
+        <div class="item item-image">
+            <img ng-src="{{person.image}}" />
+        </div>
+
+        <div class="item">
+            <h2>Bob</h2>
+            <span class="item-note">
+              is in his 20's
+            </span>
+        </div>
+
+        <div class="item item-icon-left">
+            <i class="icon ion-plus"></i>
+            75% Positive Feedback
+        </div>
+
+        <div class="item item-icon-left">
+            <i class="icon ion-plus"></i>
+            4 Drinks Bought tonight
+        </div>
+
+        <div class="button-bar">
+            <a class="button button-positive" ng-click="clickMeet()">Let's Meet</a>
+            <a class="button button-calm" ng-click="clickPass()">No, Thanks</a>
+        </div>
+    </div>
+
+    <div class="card" ng-show="noPersons">
+        <div class="item item-divider">
+            No more people to rate
+        </div>
+
+        <div class="item item-text-wrap">
+            Congratulations, there are no more people to meet.  You sent 5 invites.  If there is a match, we'll send you a text message.
+        </div>
+
+        <button class="button button-full button-positive" ng-click="clickClose()">
+            Get Back to Partying!
+        </button>
+    </div>
+
+</ion-content>

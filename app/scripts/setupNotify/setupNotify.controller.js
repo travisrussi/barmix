@@ -1,6 +1,10 @@
 'use strict';
 
 barMixControllers
-  .controller('SetupnotifyCtrl', function ($scope) {
-    $scope.message = 'Hello';
+  .controller('SetupnotifyCtrl', function ($scope, $state, $timeout) {
+
+    $scope.clickSave = function() {
+        $state.go('setupCheckin');
+    };
+
   });

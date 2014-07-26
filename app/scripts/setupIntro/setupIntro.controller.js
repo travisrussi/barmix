@@ -5,13 +5,16 @@ barMixControllers
         $scope.message = 'Hello';
 
         // Called to navigate to the main app
-        $scope.startApp = function () {
-            $state.go('main');
+        $scope.clickSkipIntro = function () {
+            $state.go('login');
         };
-        $scope.next = function () {
+        $scope.clickStart = function () {
+            $state.go('login');
+        };
+        $scope.clickNext = function () {
             $ionicSlideBoxDelegate.next();
         };
-        $scope.previous = function () {
+        $scope.clickBack = function () {
             $ionicSlideBoxDelegate.previous();
         };
 

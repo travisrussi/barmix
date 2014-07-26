@@ -1,6 +1,11 @@
 'use strict';
 
 barMixControllers
-  .controller('CheckinCtrl', function ($scope) {
-    $scope.message = 'Hello';
+  .controller('CheckinCtrl', function ($rootScope, $scope, $state) {
+        $scope.message = 'Hello';
+
+        $scope.clickCheckin = function() {
+            $state.go('meetList');
+        };
+
   });
