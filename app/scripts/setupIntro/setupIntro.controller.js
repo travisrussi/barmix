@@ -15,15 +15,16 @@ barMixControllers
 
                 $rootScope.parseUser = currentUser;
 
-                $rootScope.loadFacebookUser();
+                $rootScope.loadFacebookUser(function() {
+                    if ($rootScope.parseUser.get('setupNotify') !== true) {
+                        $state.go('setupNotify');
+                    } else if ($rootScope.parseUser.get('setupCheckin') !== true) {
+                        $state.go('setupCheckin');
+                    } else {
+                        $state.go('venues');
+                    }
+                });
 
-                if ($rootScope.parseUser.get('setupNotify') !== true) {
-                    $state.go('setupNotify');
-                } else if ($rootScope.parseUser.get('setupCheckin') !== true) {
-                    $state.go('setupCheckin');
-                } else {
-                    $state.go('venues');
-                }
             });
         }
 
@@ -46,7 +47,7 @@ barMixControllers
             $scope.slideIndex = index;
         };
 
-        $rootScope.loadFacebookUser = function() {
+        $rootScope.loadFacebookUser = function(cb) {
             if (!$rootScope.facebookUser) {
                 FB.api('/me', {fields: 'id,first_name,last_name,name,birthday,gender,email,age_range'}, function (response) {
                     if (response && !response.error) {
@@ -58,9 +59,15 @@ barMixControllers
                                 $rootScope.parseUser.set('facebookPicture', response.data);
                                 $rootScope.parseUser.save();
                             }
+
+                            if (cb) cb();
                         });
+                    } else if (cb) {
+                        cb();
                     }
                 });
+            } else if (cb) {
+                cb();
             }
         }
 })
