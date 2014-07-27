@@ -64,10 +64,10 @@ barMixControllers
                     for (var x = 0; x < personViewedList.length; x++) {
                         var personViewed = personViewedList[x];
 
-                        if (checkInUser.get('id') !== personViewed.get('id')) {
+                        //if (checkInUser.get('id') !== personViewed.get('id')) {
                             bAdd = true;
-                            break;
-                        }
+                        //    break;
+                        //}
                     }
                     if (bAdd) {
                         $scope.persons.push(checkInUser);
