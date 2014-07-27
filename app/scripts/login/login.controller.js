@@ -2,7 +2,12 @@
 
 barMixControllers
   .controller('LoginCtrl', function ($rootScope, $scope, $state) {
-    $scope.pageTitle = 'Sign Up';
+        $scope.pageTitle = 'Sign Up';
+
+        if (typeof $rootScope.loadFacebookUser === 'undefined') {
+            $state.go('setupIntro');
+            return;
+        }
 
         $scope.clickConnectWithFacebook = function() {
 

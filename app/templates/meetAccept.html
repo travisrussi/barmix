@@ -9,15 +9,15 @@
 </ion-header-bar>
 <ion-content>
 
-    <div class="card" ng-show="person">
+    <div class="card" ng-show="parsePerson">
         <div class="item item-thumbnail-left">
-            <img ng-src="{{person.facebookPicture.url}}" />
-            <h2>{{person.facebookUser.first_name}}</h2>
+            <img ng-src="{{parsePerson.facebookPicture.url}}" />
+            <h2>{{parsePerson.facebookUser.first_name}}</h2>
             <p>and you matched!</p>
         </div>
 
         <div class="item item-text-wrap" ng-show="!showMeetLocation">
-            <p>Do you still want to meet with {{person.facebookUser.first_name}}?</p>
+            <p>Do you still want to meet with {{parsePerson.facebookUser.first_name}}?</p>
         </div>
 
         <div class="button-bar" ng-show="!showMeetLocation">
@@ -31,7 +31,7 @@
         </div>
 
         <label class="item item-input item-stacked-label" ng-show="showMeetLocation">
-            <span class="input-label">Where/how should {{person.facebookUser.first_name}} find you?</span>
+            <span class="input-label">Where/how should {{parsePerson.facebookUser.first_name}} find you?</span>
             <input type="text" placeholder="Describe your current location and what you're wearing" ng-model="meetLocation">
         </label>
 

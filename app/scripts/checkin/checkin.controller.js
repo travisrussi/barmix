@@ -15,22 +15,30 @@ barMixControllers
         query.first({
             success: function(object) {
                 if (typeof object === "undefined") {
-                    $rootScope.parseVenue.set("venueId", $rootScope.venue.id);
-                    $rootScope.parseVenue.set("venueName", $rootScope.venue.name);
-                    $rootScope.parseVenue.save();
+                    $rootScope.updateVenue($rootScope.venue.id, $rootScope.venue.name);
                 } else {
                     $rootScope.parseVenue = object;
                 }
             },
             error: function(error) {
-                $rootScope.parseVenue.set("venueId", $rootScope.venue.id);
-                $rootScope.parseVenue.set("venueName", $rootScope.venue.name);
-                $rootScope.parseVenue.save();
+                $rootScope.updateVenue($rootScope.venue.id, $rootScope.venue.name);
             }
         });
 
+        $rootScope.updateVenue = function(venueId, venueName) {
+            $rootScope.parseVenue.set("venueId", venueId);
+            $rootScope.parseVenue.set("venueName", venueName);
+            $rootScope.parseVenue.save();
+        };
 
-        $scope.clickCheckin = function() {
+        $rootScope.updateUserCheckin = function() {
+            $rootScope.parseUser.set('venueCurrent', $rootScope.parseVenue);
+            $rootScope.parseUser.set('venueLastCheckin', moment().toISOString());
+            $rootScope.parseUser.set('venueLastSeen', moment().toISOString());
+            $rootScope.parseUser.save();
+        };
+
+        $rootScope.addVenueCheckin = function() {
             var checkInList = $rootScope.parseVenue.get("checkins") || [];
 
             var bExists = false;
@@ -47,6 +55,12 @@ barMixControllers
                 $rootScope.parseVenue.set("checkins", checkInList);
                 $rootScope.parseVenue.save();
             }
+        };
+
+
+        $scope.clickCheckin = function() {
+            $rootScope.addVenueCheckin();
+            $rootScope.updateUserCheckin();
 
             $state.go('meetList');
         };

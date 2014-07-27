@@ -17,10 +17,16 @@ barMixControllers
         };
 
         $scope.clickDecline = function() {
+
+            $rootScope.updateMeet('available', 'declined');
+
             $state.go('meetList');
         };
 
         $scope.clickSendLocation = function() {
+
+            $rotoScope.updateMeet('taken', 'accepted');
+
             $state.go('meetRate');
         };
 
@@ -35,5 +41,19 @@ barMixControllers
         }, 1000);
 
         $scope.showMeetLocation = false;
+
+
+        $rootScope.updateMeet = function(statusCurrent, statusHistory) {
+            var meetHistory = $rootScope.parseUser.get('meetHistory') || [];
+            meetHistory.push({userId:$rootScope.parsePerson.id,status:statusHistory||statusCurrent,ts:moment().toISOString()});
+            $rootScope.parseUser.set('meetHistory', meetHistory);
+
+            $rootScope.parseUser.set('meetStatus', statusCurrent);
+            $rootScope.parseUser.set('meetLastPerson', $rootScope.parsePerson);
+            $rootScope.parseUser.set('meetLastSeen', moment().toISOString());
+            $rootScope.parseUser.save();
+        }
+
+        $rootScope.updateMeet('taken', 'confirming');
 
   });

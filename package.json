@@ -1,14 +1,14 @@
 {
   "name": "Barmix",
   "description": "Overcome social anxiety of meeting people at bars.",
-    "version": "0.0.1",
-    "repository": {
-        "type": "git",
-        "url": "git@github.com:travisrussi/barmix.git"
-    },
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:travisrussi/barmix.git"
+  },
   "dependencies": {
-      "connect": "2.15.0",
-      "connect-phonegap": "0.9.1"
+    "connect": "2.15.0",
+    "connect-phonegap": "0.9.1"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -46,7 +46,7 @@
     "npm": ">=1.1.0"
   },
   "scripts": {
-      "start": "node ./lib/index.js",
-      "test": "grunt test"
+    "start": "node ./lib/index.js",
+    "test": "grunt test"
   }
 }

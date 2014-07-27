@@ -13,9 +13,9 @@ barMixControllers
         }
 
         $scope.clickMeet = function() {
-            $rootScope.person = $scope.persons[$scope.currentPerson];
+            $rootScope.parsePerson = $rootScope.parsePersons[$scope.currentPerson];
 
-            addPersonViewed($scope.person);
+            addPersonViewed($rootScope.parsePerson);
 
             $state.go('meetAccept');
         };
@@ -23,14 +23,14 @@ barMixControllers
         $scope.clickPass = function() {
             $scope.currentPerson++;
 
-            addPersonViewed($scope.person);
+            addPersonViewed($rootScope.parsePerson);
 
-            $scope.noPersons = $scope.currentPerson >= $scope.persons.length;
+            $scope.noPersons = $scope.currentPerson >= $rootScope.parsePersons.length;
 
             if ($scope.noPersons) {
-                $scope.person = null;
+                $rootScope.parsePerson = null;
             } else {
-                $scope.person = $scope.persons[$scope.currentPerson];
+                $rootScope.parsePerson = $rootScope.parsePersons[$scope.currentPerson];
             }
 
             $ionicScrollDelegate.scrollTop();
@@ -48,7 +48,7 @@ barMixControllers
             $rootScope.parseUser.save();
         }
 
-        $scope.persons = [];
+        $rootScope.parsePersons = [];
         $scope.currentPerson = 0;
 
         $timeout(function() {
@@ -70,20 +70,20 @@ barMixControllers
                         //}
                     }
                     if (bAdd) {
-                        $scope.persons.push(checkInUser);
+                        $rootScope.parsePersons.push(checkInUser);
                     }
                 //}
             }
 
-            if ($scope.persons.length > 0) {
-                $scope.person = $scope.persons[0].fetch().then(function (user) {
-                    $scope.person = user;
-                    $scope.person.facebookUser = $scope.person.get('facebookUser');
-                    $scope.person.facebookPicture = $scope.person.get('facebookPicture');
+            if ($rootScope.parsePersons.length > 0) {
+                $rootScope.parsePerson = $rootScope.parsePersons[0].fetch().then(function (user) {
+                    $rootScope.parsePerson = user;
+                    $rootScope.parsePerson.facebookUser = $rootScope.parsePerson.get('facebookUser');
+                    $rootScope.parsePerson.facebookPicture = $rootScope.parsePerson.get('facebookPicture');
                     $scope.$digest();
                 });
             }
-            $scope.noPersons = $scope.persons.length === 0;
+            $scope.noPersons = $rootScope.parsePersons.length === 0;
             $scope.status.personLoading = false;
         }, 10);
   });

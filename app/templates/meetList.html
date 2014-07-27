@@ -1,6 +1,6 @@
 <ion-header-bar align-title="center" class="bar-positive">
     <div class="buttons">
-        <!--<button class="button" ng-click="doSomething()">Left Button</button>-->
+        <button class="button" ng-click="clickCheckout()">Check-Out</button>
     </div>
     <h1 class="title">Want to Meet?</h1>
     <div class="buttons">
@@ -9,19 +9,19 @@
 </ion-header-bar>
 <ion-content>
 
-    <div class="card" ng-show="status.personLoading">
+    <div class="card" ng-show="status.parsePersonLoading">
         Loading persons...
     </div>
 
-    <div class="card" ng-show="person && !status.personLoading">
+    <div class="card" ng-show="parsePerson && !status.personLoading">
         <div class="item item-image">
-            <img ng-src="{{person.facebookPicture.url}}" />
+            <img ng-src="{{parsePerson.facebookPicture.url}}" />
         </div>
 
         <div class="item">
-            <h2>{{person.facebookUser.first_name}}</h2>
+            <h2>{{parsePerson.facebookUser.first_name}}</h2>
             <span class="item-note">
-              is over {{person.facebookUser.age_range.min}}
+              is over {{parsePerson.facebookUser.age_range.min}}
             </span>
         </div>
 

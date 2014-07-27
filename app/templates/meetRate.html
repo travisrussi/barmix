@@ -9,15 +9,15 @@
 </ion-header-bar>
 <ion-content>
 
-    <div class="card" ng-show="person">
+    <div class="card" ng-show="parsePerson">
         <div class="item item-thumbnail-left">
-            <img ng-src="{{person.image}}" />
-            <h2>{{person.artist}}</h2>
+            <img ng-src="{{parsePerson.facebookPicture.url}}" />
+            <h2>{{parsePerson.facebookUser.first_name}}</h2>
             <p>and you met!</p>
         </div>
 
         <div class="item item-text-wrap">
-            <p>How would you rate {{person.artist}}?</p>
+            <p>How would you rate {{parsePerson.facebookUser.first_name}}?</p>
         </div>
 
         <ion-toggle ng-model="rating.curteous"
@@ -36,7 +36,7 @@
         </ion-toggle>
 
         <div class="item item-text-wrap" ng-show="rating.inappropriate">
-            <p>Warning: this will flag {{person.artist}} for a manual review and possible exclusion from BarMix.</p>
+            <p>Warning: this will flag {{parsePerson.artist}} for a manual review and possible exclusion from BarMix.</p>
         </div>
 
         <a class="button button-full button-positive" ng-click="clickRate()">Submit your rating</a>

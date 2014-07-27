@@ -23,8 +23,71 @@ barMixControllers
                         $state.go('setupCheckin');
                         return;
                     } else {
-                        $state.go('venues');
-                        return;
+
+                        $rootScope.parseUser.venueCurrent = $rootScope.parseUser.get('venueCurrent') || {};
+                        $rootScope.parseUser.venueCurrent.lastCheckin = moment($rootScope.parseUser.get('venueLastCheckin'), moment.ISO_8601);
+                        $rootScope.parseUser.venueCurrent.lastSeen = moment($rootScope.parseUser.get('venueLastSeen'), moment.ISO_8601);
+
+                        if ($rootScope.parseUser.venueCurrent.id) {
+                            try {
+                                $rootScope.parseUser.venueCurrent.fetch().then(function (venue) {
+                                    $rootScope.parseUser.venueCurrent = venue;
+                                    $rootScope.parseUser.set('venueCurrent', venue);
+                                    $rootScope.parseVenue = venue;
+                                    $rootScope.parsePersons = venue.get('checkins') || [];
+
+
+                                    $rootScope.parseUser.meetCurrent = {};
+                                    $rootScope.parseUser.meetCurrent.status = $rootScope.parseUser.get('meetStatus') || 'available';
+                                    $rootScope.parseUser.meetCurrent.lastPerson = $rootScope.parseUser.get('meetLastPerson') || {};
+                                    $rootScope.parseUser.meetCurrent.lastSeen = $rootScope.parseUser.get('meetLastSeen') || moment().toISOString();
+
+                                    if ($rootScope.parseUser.meetCurrent.lastPerson.id) {
+
+                                        try {
+                                            $rootScope.parseUser.meetCurrent.lastPerson.fetch().then(function (person) {
+                                                $rootScope.parseUser.meetCurrent.lastPerson = person;
+                                                $rootScope.parseUser.set('meetLastPerson', person);
+                                                $rootScope.parseUser.set('meetLastSeen', moment().toISOString());
+                                                $rootScope.parseUser.save();
+                                                $rootScope.parsePerson = person;
+                                                $rootScope.parsePerson.facebookUser = person.get('facebookUser');
+                                                $rootScope.parsePerson.facebookPicture = person.get('facebookPicture');
+
+
+                                                if ($rootScope.parseUser.meetCurrent.status === 'taken') {
+                                                    $state.go('meetRate');
+                                                    return;
+                                                } else {
+                                                    $state.go('meetAccept');
+                                                    return;
+                                                }
+                                            });
+                                        } catch (ex) {
+                                            $rootScope.parseUser.set('meetLastPerson', null);
+                                            $rootScope.parseUser.save();
+
+                                            $state.go('meetList');
+                                            return;
+                                        }
+
+                                    } else {
+                                        $state.go('meetList');
+                                        return;
+                                    }
+                                });
+                            } catch (ex) {
+                                $rootScope.parseUser.set('venueCurrent', null);
+                                $rootScope.parseUser.save();
+
+                                $state.go('venues');
+                                return;
+                            }
+
+                        } else {
+                            $state.go('venues');
+                            return;
+                        }
                     }
                 });
 
