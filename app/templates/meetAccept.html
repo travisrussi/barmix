@@ -11,13 +11,13 @@
 
     <div class="card" ng-show="person">
         <div class="item item-thumbnail-left">
-            <img ng-src="{{person.image}}" />
-            <h2>{{person.artist}}</h2>
+            <img ng-src="{{person.facebookPicture.url}}" />
+            <h2>{{person.facebookUser.first_name}}</h2>
             <p>and you matched!</p>
         </div>
 
         <div class="item item-text-wrap">
-            <p>Do you still want to meet with {{person.artist}}?</p>
+            <p>Do you still want to meet with {{person.facebookUser.first_name}}?</p>
         </div>
 
         <div class="button-bar">
