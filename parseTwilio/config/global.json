@@ -1,0 +1,11 @@
+{
+    "applications": {
+        "BarMix": {
+            "applicationId": "GYNWZ22xu0b3JB1UeDzNCmymPjyCmqPmlpL3Ivad", 
+            "masterKey": "hlO5PEcIWZsCEsVo4P6c2vGC7h2IBSrxR8WFDKA5"
+        }, 
+        "_default": {
+            "link": "BarMix"
+        }
+    }
+}
