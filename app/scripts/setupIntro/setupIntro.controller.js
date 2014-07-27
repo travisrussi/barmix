@@ -4,25 +4,28 @@ barMixControllers
     .controller('SetupintroCtrl', function ($rootScope, $scope, $state, $ionicSlideBoxDelegate) {
         $scope.message = 'Hello';
 
-        Parse.User.current().fetch().then(function (currentUser) {
+        var currentUser = Parse.User.current();
 
-            if (typeof currentUser === "undefined") {
-                return;
-            }
+        if (currentUser) {
+            currentUser.fetch().then(function (currentUser) {
 
-            $rootScope.parseUser = currentUser;
+                if (typeof currentUser === "undefined") {
+                    return;
+                }
 
-            $rootScope.loadFacebookUser();
+                $rootScope.parseUser = currentUser;
 
-            if ($rootScope.parseUser.get('setupNotify') !== true) {
-                $state.go('setupNotify');
-            } else if ($rootScope.parseUser.get('setupCheckin') !== true) {
-                $state.go('setupCheckin');
-            } else {
-                $state.go('venues');
-            }
+                $rootScope.loadFacebookUser();
 
-        });
+                if ($rootScope.parseUser.get('setupNotify') !== true) {
+                    $state.go('setupNotify');
+                } else if ($rootScope.parseUser.get('setupCheckin') !== true) {
+                    $state.go('setupCheckin');
+                } else {
+                    $state.go('venues');
+                }
+            });
+        }
 
         // Called to navigate to the main app
         $scope.clickSkipIntro = function () {
