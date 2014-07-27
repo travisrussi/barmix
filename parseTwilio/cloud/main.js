@@ -6,6 +6,13 @@ Parse.Cloud.define("hello", function(request, response) {
 });
 
 
+Parse.Cloud.define("receiveSMS", function(request, response) {
+    console.log("Received a new text: " + request.params.From);
+    response.success('<?xml version="1.0" encoding="UTF-8"?>' +
+    '    <Response>' +
+    '    <Message>I\'m hungry!</Message>' +
+    '    </Response>');
+});
 
 
 
