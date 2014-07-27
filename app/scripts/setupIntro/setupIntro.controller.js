@@ -6,7 +6,7 @@ barMixControllers
 
         var currentUser = Parse.User.current();
 
-        if (currentUser) {
+        if (typeof currentUser !== "undefined") {
             currentUser.fetch().then(function (currentUser) {
 
                 if (typeof currentUser === "undefined") {
