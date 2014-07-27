@@ -11,14 +11,23 @@
 
     <ion-list>
 
-        <a ng-repeat="item in items"
-           ng-click="clickVenue(item)"
+        <div class="item" ng-show="!venues || venues.length === 0">
+            Loading venues...
+        </div>
+
+        <a ng-repeat="venue in venues"
+           ng-click="clickVenue(venue)"
            class="item item-thumbnail-left item-icon-right">
 
-            <img ng-src="{{ item.image }}">
-            <h2>{{ item.album }}</h2>
-            <h4>{{ item.artist }}</h4>
-            <span class="badge badge-assertive">{{item.id}}</span>
+            <img ng-src="{{ venue.photo_url }}">
+            <h2>{{ venue.name }}</h2>
+            <h4>
+                <span ng-repeat="category in venue.categories">
+                    {{category.name}}&nbsp;&nbsp;
+                </span>
+            </h4>
+            <h4>{{venue.address1}}</h4>
+            <span class="badge badge-assertive">{{venue.avg_rating}}</span>
         </a>
 
     </ion-list>

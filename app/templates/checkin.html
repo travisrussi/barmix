@@ -10,9 +10,18 @@
 <ion-content>
 
     <div class="card">
-        <div class="item item-divider">
-            Check-In at {{venue.artist}}
+        <div class="item item-thumbnail-left item-icon-right">
+            <img ng-src="{{ venue.photo_url }}">
+            <h2>Check-in at {{ venue.name }}</h2>
+            <h4>
+                <span ng-repeat="category in venue.categories">
+                    {{category.name}}&nbsp;&nbsp;
+                </span>
+            </h4>
+            <h4>{{venue.address1}}</h4>
+            <span class="badge badge-assertive">{{venue.avg_rating}}</span>
         </div>
+
         <div class="item item-text-wrap">
             You need to check into the venue to see all the people there.
         </div>

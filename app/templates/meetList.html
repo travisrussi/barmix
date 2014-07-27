@@ -9,15 +9,19 @@
 </ion-header-bar>
 <ion-content>
 
-    <div class="card" ng-show="person">
+    <div class="card" ng-show="status.personLoading">
+        Loading persons...
+    </div>
+
+    <div class="card" ng-show="person && !status.personLoading">
         <div class="item item-image">
-            <img ng-src="{{person.image}}" />
+            <img ng-src="{{person.get('facebookPicture').url}}" />
         </div>
 
         <div class="item">
-            <h2>Bob</h2>
+            <h2>{{person.get('facebookUser').get('first_name')}}</h2>
             <span class="item-note">
-              is in his 20's
+              is over {{person.get('facebookUser').get('min')}}
             </span>
         </div>
 
@@ -37,7 +41,7 @@
         </div>
     </div>
 
-    <div class="card" ng-show="noPersons">
+    <div class="card" ng-show="noPersons && !status.personLoading">
         <div class="item item-divider">
             No more people to rate
         </div>
