@@ -36,6 +36,20 @@ barMixControllers
                                     $rootScope.parseVenue = venue;
                                     $rootScope.parsePersons = venue.get('checkins') || [];
 
+                                    var bUserCheckedIntoVenue = false;
+                                    for(var i = 0; i < $rootScope.parsePersons.length; i++) {
+                                        if ($rootScope.parsePersons[i].id === $rootScope.parseUser.id) {
+                                            bUserCheckedIntoVenue = true;
+                                            break;
+                                        }
+                                    }
+
+                                    if (!bUserCheckedIntoVenue) {
+                                        $rootScope.parsePersons.push($rootScope.parseUser);
+                                        $rootScope.parseVenue.set('checkins', $rootScope.parsePersons);
+                                        $rootScope.parseVenue.save();
+                                    }
+
 
                                     $rootScope.parseUser.meetCurrent = {};
                                     $rootScope.parseUser.meetCurrent.status = $rootScope.parseUser.get('meetStatus') || 'available';
