@@ -5,13 +5,6 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title>"Barmix"</title>
 
-      <script type="text/javascript">
-          var parseApiKey = '4Ej9eqKb7z7dUFUlQUN3AXwVkfWerITFIzyZAmYq';
-          var parseAppId = 'GYNWZ22xu0b3JB1UeDzNCmymPjyCmqPmlpL3Ivad';
-          var facebookAppId = '297482083757183';
-          var testie = true;
-      </script>
-
       <!-- build:css styles/vendor.css -->
     <!-- <link rel="stylesheet" href="vendor/some.contrib.css"> -->
     <!-- bower:css -->
@@ -31,14 +24,14 @@
 
 
       <script type="text/javascript">
-          Parse.initialize(parseAppId, parseApiKey);
+          Parse.initialize('GYNWZ22xu0b3JB1UeDzNCmymPjyCmqPmlpL3Ivad', '4Ej9eqKb7z7dUFUlQUN3AXwVkfWerITFIzyZAmYq');
       </script>
 
       <div id="fb-root"></div>
       <script>
           window.fbAsyncInit = function() {
               Parse.FacebookUtils.init({
-                  appId      : facebookAppId, // Facebook App ID
+                  appId      : '297482083757183', // Facebook App ID
                   channelUrl : '//www.getbarmix.com/channel.html', // Channel File
                   cookie     : true, // enable cookies to allow Parse to access the session
                   xfbml      : true  // parse XFBML
