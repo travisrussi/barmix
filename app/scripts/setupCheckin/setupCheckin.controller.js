@@ -28,7 +28,7 @@ barMixControllers
         }
 
         function error(msg) {
-
+            alert('Error: ' + msg);
         }
 
         function doGeoLocation() {
