@@ -446,9 +446,9 @@ module.exports = function (grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
-    'cssmin',
+    //'cssmin',
     //'uglify',
-    'usemin',
+    //'usemin',
     //'htmlmin',
     'cordova:build'
   ]);
