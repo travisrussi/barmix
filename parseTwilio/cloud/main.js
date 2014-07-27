@@ -6,7 +6,7 @@ var client = require('twilio')('ACCOUNT_SID', 'AUTH_TOKEN');
 // Send an SMS message
 client.sendSms({
         to:'+19168330413',
-        from: '+14506667788',
+        from: '+19167643946',
         body: 'Hello world!'
     }, function(err, responseData) {
         if (err) {
