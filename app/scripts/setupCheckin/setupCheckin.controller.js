@@ -8,7 +8,9 @@ barMixControllers
 
         if (!$rootScope.parseUser) {
             $state.go('login');
-        }
+        }//  else if ($rootScope.parseUser.get('setupCheckin') === true) {
+        //    $state.go('venues');
+        //}
 
         $scope.clickSave = function() {
             doGeoLocation();
@@ -28,7 +30,7 @@ barMixControllers
         }
 
         function error(msg) {
-            alert('Error: ' + msg);
+            alert('Error: ' + JSON.stringify(msg));
         }
 
         function doGeoLocation() {

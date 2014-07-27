@@ -7,7 +7,13 @@ barMixControllers
 
     if (!$rootScope.parseUser) {
         $state.go('login');
-    }
+    }// else if ($rootScope.parseUser.get('setupNotify') === true) {
+    //    if ($rootScope.parseUser.get('setupCheckin') !== true) {
+    //        $state.go('setupCheckin');
+    //    } else {
+    //        $state.go('venues');
+    //    }
+    //}
 
     $scope.clickSave = function() {
 
