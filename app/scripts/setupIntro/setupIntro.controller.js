@@ -18,10 +18,13 @@ barMixControllers
                 $rootScope.loadFacebookUser(function() {
                     if ($rootScope.parseUser.get('setupNotify') !== true) {
                         $state.go('setupNotify');
+                        return;
                     } else if ($rootScope.parseUser.get('setupCheckin') !== true) {
                         $state.go('setupCheckin');
+                        return;
                     } else {
                         $state.go('venues');
+                        return;
                     }
                 });
 

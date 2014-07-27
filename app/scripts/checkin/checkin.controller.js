@@ -3,7 +3,7 @@
 barMixControllers
   .controller('CheckinCtrl', function ($rootScope, $scope, $state) {
 
-        if (!$rootScope.parseUser) {
+        if (typeof $rootScope.parseUser === "undefined") {
             $state.go('setupIntro');
             return;
         }

@@ -3,7 +3,7 @@
 barMixControllers
   .controller('MeetlistCtrl', function ($rootScope, $scope, $state, $timeout, $ionicScrollDelegate) {
 
-        if (!$rootScope.parseUser) {
+        if (typeof $rootScope.parseUser === "undefined") {
             $state.go('setupIntro');
             return;
         }
@@ -15,11 +15,15 @@ barMixControllers
         $scope.clickMeet = function() {
             $rootScope.person = $scope.persons[$scope.currentPerson];
 
+            addPersonViewed($scope.person);
+
             $state.go('meetAccept');
         };
 
         $scope.clickPass = function() {
             $scope.currentPerson++;
+
+            addPersonViewed($scope.person);
 
             $scope.noPersons = $scope.currentPerson >= $scope.persons.length;
 
@@ -36,36 +40,50 @@ barMixControllers
             $state.go('meetList');
         };
 
+
+        function addPersonViewed(person) {
+            var personViewedList = $rootScope.parseUser.get('peopleViewed') || [];
+            personViewedList.push(person);
+            $rootScope.parseUser.set('peopleViewed', personViewedList);
+            $rootScope.parseUser.save();
+        }
+
         $scope.persons = [];
         $scope.currentPerson = 0;
 
-        var checkInList = $rootScope.parseVenue.get('checkins') || [];
-        var personViewedList = $rootScope.parseUser.get('peopleViewed') || [];
-        
-        for (var i = 0; i < checkInList.length; i++){
-            var checkInUser = checkInList[i];
+        $timeout(function() {
+            var checkInList = $rootScope.parseVenue.get('checkins') || [];
+            var personViewedList = $rootScope.parseUser.get('peopleViewed') || [];
 
-            //if (checkInUser.get('id') !== $rootScope.parseUser.get('id')) {
+            for (var i = 0; i < checkInList.length; i++){
+                var checkInUser = checkInList[i];
 
-                var bAdd = personViewedList.length == 0;
-                for (var x = 0; x < personViewedList.length; x++) {
-                    var personViewed = personViewedList[x];
+                //if (checkInUser.get('id') !== $rootScope.parseUser.get('id')) {
 
-                    //if (personViewed.get('id') !== $rootScope.parseUser.get('id') && checkInUser.get('id') !== personViewed.get('id')) {
-                        bAdd = true;
-                    //    break;
-                    //}
-                }
-                if (bAdd) {
-                    $scope.persons.push(checkInUser);
-                }
-            //}
-        }
+                    var bAdd = personViewedList.length == 0;
+                    for (var x = 0; x < personViewedList.length; x++) {
+                        var personViewed = personViewedList[x];
 
-        if ($scope.persons.length > 0) {
-            $scope.person = $scope.persons[0].fetch();
-        }
-        $scope.noPersons = $scope.persons.length === 0;
-        $scope.status.personLoading = false;
+                        if (checkInUser.get('id') !== personViewed.get('id')) {
+                            bAdd = true;
+                            break;
+                        }
+                    }
+                    if (bAdd) {
+                        $scope.persons.push(checkInUser);
+                    }
+                //}
+            }
 
+            if ($scope.persons.length > 0) {
+                $scope.person = $scope.persons[0].fetch().then(function (user) {
+                    $scope.person = user;
+                    $scope.person.facebookUser = $scope.person.get('facebookUser');
+                    $scope.person.facebookPicture = $scope.person.get('facebookPicture');
+                    $scope.$digest();
+                });
+            }
+            $scope.noPersons = $scope.persons.length === 0;
+            $scope.status.personLoading = false;
+        }, 10);
   });

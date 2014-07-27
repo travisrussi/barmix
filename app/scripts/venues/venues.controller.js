@@ -4,12 +4,14 @@ barMixControllers
   .controller('VenuesCtrl', function ($rootScope, $scope, $state, $http) {
 
 
-        if (!$rootScope.parseUser) {
+        if (typeof $rootScope.parseUser === "undefined") {
             $state.go('setupIntro');
+            return;
         }
 
         if (!$rootScope.parseUser.get('positionLat') || !$rootScope.parseUser.get('positionLong') ) {
             $state.go('setupCheckin');
+            return;
         }
 
         $scope.clickVenue = function(venue) {

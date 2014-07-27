@@ -15,13 +15,13 @@
 
     <div class="card" ng-show="person && !status.personLoading">
         <div class="item item-image">
-            <img ng-src="{{person.get('facebookPicture').url}}" />
+            <img ng-src="{{person.facebookPicture.url}}" />
         </div>
 
         <div class="item">
-            <h2>{{person.get('facebookUser').get('first_name')}}</h2>
+            <h2>{{person.facebookUser.first_name}}</h2>
             <span class="item-note">
-              is over {{person.get('facebookUser').get('min')}}
+              is over {{person.facebookUser.age_range.min}}
             </span>
         </div>
 
