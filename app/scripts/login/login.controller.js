@@ -26,7 +26,7 @@ barMixControllers
                     $state.go('setupNotify');
                 },
                 error: function(user, error) {
-                    alert("User cancelled the Facebook login or did not fully authorize.");
+                    alert("User cancelled the Facebook login or did not fully authorize. \n" + JSON.stringify(error));
                 }
             });
         };
