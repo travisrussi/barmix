@@ -29,11 +29,16 @@ barMixControllers
 
             if ($scope.noPersons) {
                 $rootScope.parsePerson = null;
+                $ionicScrollDelegate.scrollTop();
             } else {
-                $rootScope.parsePerson = $rootScope.parsePersons[$scope.currentPerson];
+                $rootScope.loadUser($rootScope.parsePersons[$scope.currentPerson], function(p) {
+                    $rootScope.parsePerson = p;
+                    $scope.$digest();
+                    $ionicScrollDelegate.scrollTop();
+                });
             }
 
-            $ionicScrollDelegate.scrollTop();
+
         };
 
         $scope.clickClose = function() {
