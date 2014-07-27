@@ -7,7 +7,7 @@ barMixControllers
         $scope.notSupported = false;
 
         if (!$rootScope.parseUser) {
-            $state.go('login');
+            $state.go('setupIntro');
         }//  else if ($rootScope.parseUser.get('setupCheckin') === true) {
         //    $state.go('venues');
         //}

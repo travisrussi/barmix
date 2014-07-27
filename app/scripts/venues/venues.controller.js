@@ -5,7 +5,7 @@ barMixControllers
 
 
         if (!$rootScope.parseUser) {
-            $state.go('login');
+            $state.go('setupIntro');
         }
 
         if (!$rootScope.parseUser.get('positionLat') || !$rootScope.parseUser.get('positionLong') ) {

@@ -4,7 +4,7 @@ barMixControllers
   .controller('CheckinCtrl', function ($rootScope, $scope, $state) {
 
         if (!$rootScope.parseUser) {
-            $state.go('login');
+            $state.go('setupIntro');
             return;
         }
 

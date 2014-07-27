@@ -6,7 +6,7 @@ barMixControllers
     $scope.setup = {};
 
     if (!$rootScope.parseUser) {
-        $state.go('login');
+        $state.go('setupIntro');
     }// else if ($rootScope.parseUser.get('setupNotify') === true) {
     //    if ($rootScope.parseUser.get('setupCheckin') !== true) {
     //        $state.go('setupCheckin');

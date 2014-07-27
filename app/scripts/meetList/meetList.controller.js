@@ -4,7 +4,7 @@ barMixControllers
   .controller('MeetlistCtrl', function ($rootScope, $scope, $state, $timeout, $ionicScrollDelegate) {
 
         if (!$rootScope.parseUser) {
-            $state.go('login');
+            $state.go('setupIntro');
             return;
         }
 
