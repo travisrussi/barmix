@@ -16,18 +16,28 @@
             <p>and you matched!</p>
         </div>
 
-        <div class="item item-text-wrap">
+        <div class="item item-text-wrap" ng-show="!showMeetLocation">
             <p>Do you still want to meet with {{person.facebookUser.first_name}}?</p>
         </div>
 
-        <div class="button-bar">
+        <div class="button-bar" ng-show="!showMeetLocation">
             <a class="button button-positive" ng-click="clickAccept()" ng-disabled="expiresIn <= 0 || showMeetLocation">Yes, Let's Meet</a>
             <a class="button button-calm" ng-click="clickDecline()">No, Thanks</a>
         </div>
 
-        <div class="item item-text-wrap">
+        <div class="item item-text-wrap" ng-show="!showMeetLocation">
             <p ng-show="expiresIn > 0 && showTimer == true">Act fast! Offer expires in {{expiresIn}} seconds.</p>
             <p ng-show="expiresIn <= 0 && showTimer == true">Sorry, the offer expired!</p>
+        </div>
+
+        <label class="item item-input item-stacked-label" ng-show="showMeetLocation">
+            <span class="input-label">Where/how should {{person.facebookUser.first_name}} find you?</span>
+            <input type="text" placeholder="Describe your current location and what you're wearing" ng-model="meetLocation">
+        </label>
+
+        <div class="button-bar" ng-show="showMeetLocation">
+            <a class="button button-positive" ng-click="clickSendLocation()" ng-disabled="!meetLocation">Send Location</a>
+            <a class="button button-calm" ng-click="clickDecline()">Changed My Mind</a>
         </div>
 
     </div>
@@ -46,6 +56,7 @@
         </button>
     </div>
 
+    <!--
     <div class="card" ng-show="showMeetLocation">
         <div class="item item-divider">
             Send Meet Location
@@ -59,5 +70,6 @@
             Send
         </button>
     </div>
+    -->
 
 </ion-content>

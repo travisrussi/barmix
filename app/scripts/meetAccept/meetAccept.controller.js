@@ -1,7 +1,12 @@
 'use strict';
 
 barMixControllers
-  .controller('MeetacceptCtrl', function ($scope, $state, $interval) {
+  .controller('MeetacceptCtrl', function ($rootScope, $scope, $state, $interval) {
+
+        if (typeof $rootScope.parseUser === "undefined") {
+            $state.go('setupIntro');
+            return;
+        }
 
         $scope.clickAccept = function() {
 
